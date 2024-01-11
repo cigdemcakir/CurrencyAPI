@@ -33,7 +33,6 @@ public class CurrencyController : ControllerBase
         }
     }
     
-    // Get exchange rates of all currencies against a specified base currency
     [HttpGet("convertToAll/{baseCurrency}")]
     public async Task<IActionResult> GetCurrencyToAllRates(string baseCurrency)
     {
@@ -50,7 +49,11 @@ public class CurrencyController : ControllerBase
         {
             var exchangeRates = await _currencyService.GetCurrencyToAllRatesAsync(baseCurrency);
 
-            return Ok(exchangeRates);
+            var parsedJson = JsonConvert.DeserializeObject(exchangeRates);
+
+            var formattedData= JsonConvert.SerializeObject(parsedJson, Formatting.Indented);
+        
+            return Ok(formattedData);
         }
         catch (Exception ex)
         {
@@ -102,4 +105,5 @@ public class CurrencyController : ControllerBase
             return StatusCode(500, $"An error occurred while processing your request. Error: {ex.Message}");
         }
     }
+    
 }
