@@ -7,7 +7,9 @@ Additionally, it provides an API to list all supported currencies.
 
 https://github.com/cigdemcakir/Patika-CurrencyAPI/assets/102484836/64b78319-6e7a-4d9f-abbc-a5dc4a2bbf8b
 
+### External API Service - Collect API
 
+This project utilizes the Collect API to access real-time currency exchange data. Collect API is a comprehensive source for financial data, offering a wide range of information including current currency exchange rates. Integration with this service ensures that the project can provide accurate and up-to-date currency information, vital for conversion features and financial data accuracy.
 
 ### Features
 - **Fetch Exchange Rates:**
