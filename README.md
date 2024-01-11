@@ -35,7 +35,7 @@ This project employs the Fluent Validation library to implement robust data vali
 The project integrates advanced logging and custom exception middleware to enhance monitoring and error management. Logging tracks detailed information for every API request and response, aiding in issue diagnosis and performance optimization. The custom exception middleware uniformly handles uncaught exceptions, ensuring they are appropriately logged and responded to, thus maintaining the API's stability and reliability.
 
 <div align="center">
-    <img width="804" alt="Screenshot 2024-01-11 at 15 17 55" src="https://github.com/cigdemcakir/Patika-CurrencyAPI/assets/102484836/2202341e-b5eb-4669-b439-44c8d27f4b4b">
+    <img width="704" alt="Screenshot 2024-01-11 at 15 17 55" src="https://github.com/cigdemcakir/Patika-CurrencyAPI/assets/102484836/2202341e-b5eb-4669-b439-44c8d27f4b4b">
 </div>
 
 
