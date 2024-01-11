@@ -35,7 +35,8 @@ public class CurrencyService
         
         if (response.IsSuccessful)
         {
-            return JsonConvert.DeserializeObject<List<CurrencyRate>>(response.Content);
+            var resultObject = JsonConvert.DeserializeObject<CurrencyRatesResponse>(response.Content);
+            return resultObject.Result;
         }
         else
         {
@@ -44,7 +45,7 @@ public class CurrencyService
     }
     
     // Get the exchange rates of all currencies against a specified base currency
-    public async Task<ConversionResponse> GetCurrencyToAllRatesAsync(string baseCurrency)
+    public async Task<string> GetCurrencyToAllRatesAsync(string baseCurrency)
     {
         var request = CreateRequest($"/currencyToAll?int=10&base={baseCurrency}");
         
@@ -52,7 +53,8 @@ public class CurrencyService
         
         if (response.IsSuccessful)
         {
-            return JsonConvert.DeserializeObject<ConversionResponse>(response.Content);
+            var result = JsonConvert.DeserializeObject<ConversionResponse>(response.Content);
+            return response.Content; 
         }
         else
         {
@@ -61,7 +63,7 @@ public class CurrencyService
     }
 
     // Convert a specific amount from one currency to another
-    public async Task<ConversionResponse> ConvertCurrencyAsync(string baseCurrency, string targetCurrency, decimal amount)
+    public async Task<string> ConvertCurrencyAsync(string baseCurrency, string targetCurrency, decimal amount)
     {
         var request = CreateRequest($"/exchange?base={baseCurrency}&to={targetCurrency}&int={amount}");
 
@@ -69,7 +71,7 @@ public class CurrencyService
         
         if (response.IsSuccessful)
         {
-            return JsonConvert.DeserializeObject<ConversionResponse>(response.Content);
+            return response.Content;
         }
         else
         {
@@ -86,7 +88,8 @@ public class CurrencyService
         
         if (response.IsSuccessful)
         {
-            return JsonConvert.DeserializeObject<List<SupportedCurrency>>(response.Content);
+            var result = JsonConvert.DeserializeObject<SupportedCurrenciesResponse>(response.Content);
+            return result.Result;
         }
         else
         {

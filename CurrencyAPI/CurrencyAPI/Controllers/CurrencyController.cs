@@ -1,6 +1,8 @@
+using CurrencyAPI.Models;
 using CurrencyAPI.Services;
 using CurrencyAPI.Validators;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace CurrencyAPI.Controllers;
 
@@ -27,7 +29,7 @@ public class CurrencyController : ControllerBase
         }
         catch (Exception ex)
         {
-            return StatusCode(500, "An error occurred while processing your request.");
+            return StatusCode(500, $"An error occurred while processing your request. Error: {ex.Message}");
         }
     }
     
@@ -46,14 +48,16 @@ public class CurrencyController : ControllerBase
         
         try
         {
-            var conversionResult = await _currencyService.GetCurrencyToAllRatesAsync(baseCurrency);
-            return Ok(conversionResult);
+            var exchangeRates = await _currencyService.GetCurrencyToAllRatesAsync(baseCurrency);
+
+            return Ok(exchangeRates);
         }
         catch (Exception ex)
         {
-            return StatusCode(500, "An error occurred while processing your request.");
+            return StatusCode(500, $"An error occurred while processing your request. Error: {ex.Message}");
         }
     }
+    
 
     // Convert a specific amount from one currency to another
     [HttpGet("convert/{baseCurrency}/{targetCurrency}/{amount}")]
@@ -80,7 +84,7 @@ public class CurrencyController : ControllerBase
         }
         catch (Exception ex)
         {
-            return StatusCode(500, "An error occurred while processing your request.");
+            return StatusCode(500, $"An error occurred while processing your request. Error: {ex.Message}");
         }
     }
     
@@ -95,7 +99,7 @@ public class CurrencyController : ControllerBase
         }
         catch (Exception ex)
         {
-            return StatusCode(500, "An error occurred while processing your request.");
+            return StatusCode(500, $"An error occurred while processing your request. Error: {ex.Message}");
         }
     }
 }
